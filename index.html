@@ -215,8 +215,7 @@ tr:nth-child(even) { background-color: #f2f2f2; }
  <button>CREDENTIALS</button>
  </div>
 
-<!-- GRADES SECTION -->
- <div id="grades-section" class="content-section">
+<div id="grades-section" class="content-section">
  <label>Select School Year:</label>
  <select id="sySelector" onchange="showGradesTable()" style="width: auto; display: inline-block;" >
  <option value="">-- Choose Year --</option>
@@ -226,8 +225,7 @@ tr:nth-child(even) { background-color: #f2f2f2; }
  <div id="grades-table-wrapper"></div>
  </div>
 
-<!-- ENROLLMENT SECTION -->
- <div id="enrollment-section" class="content-section">
+<div id="enrollment-section" class="content-section">
  <label>Select School Year:</label>
  <select id="enrollSySelector" onchange="showEnrollmentDetails()" style="width: auto; display: inline-block;" >
  <option value="">-- Choose Year --</option>
@@ -261,6 +259,8 @@ tr:nth-child(even) { background-color: #f2f2f2; }
  function handleLogin() {
  const sNum = document.getElementById('studentNum').value;
  const pass = document.getElementById('password').value;
+ 
+Updated logic to match your request
  if(sNum === "2400156" && pass === "2400156") {
  document.getElementById('login-section').style.display = 'none';
  document.getElementById('dashboard').style.display = 'block';
@@ -295,60 +295,12 @@ if(year === "2526") {
  </tr>
  </thead>
  <tbody>
- <tr>
- <td>NSTP2 - NATIONAL SERVICE TRAINING PROGRAM</td>
- <td>3</td>
- <td>MT2-7A</td>
- <td>NROTC, NSTP</td>
- <td>3.00</td>
- <td>3.25</td>
- <td>3.25</td>
- </tr>
- <tr>
- <td>COLREGS - COLLISION REGULATIONS</td>
- <td>4</td>
- <td>MT2-7A</td>
- <td>JAVIER MADEL</td>
- <td>3.00</td>
- <td>2.00</td>
- <td>2.00</td>
- </tr>
- <tr>
- <td>SEAM 2 - TRIM STABILITY AND STRESS</td>
- <td>4</td>
- <td>MT2-7A</td>
- <TD>GO, YANCY IAN BAUTISTA</TD>
- <td>3.25</td>
- <td>2.00</td>
- <td>2.25</td>
- </tr>
- <tr>
- <td>NGECT8 - ETHICS</td>
- <td>3</td>
- <td>MT2-7A</td>
- <td>MARY ANNE MERCADO</td>
- <td>3.50</td>
- <td>2.25</td>
- <td>2.50</td>
- </tr>
- <tr>
- <td>NAV1 - NAVIGATIONAL INSTRUMENTS WITH COMPASSES</td>
- <td>4</td>
- <td>MT2-7A</td>
- <td>MONTALBO REY D</td>
- <td>3.00</td>
- <td>2.00</td>
- <td>2.00</td>
- </tr>
- <tr>
- <td>EGEC4 - MATHEMATICS IN THE MODERN WORLD</td>
- <td>3</td>
- <td>MT2-7A</td>
- <td>NIRO JESRYL MAE</td>
- <td>3.50</td>
- <td>2.25</td>
- <td>2.50</td>
- </tr>
+ <tr><td>NSTP2 - NATIONAL SERVICE TRAINING PROGRAM</td><td>3</td><td>MT2-7A</td><td>NROTC, NSTP</td><td>3.00</td><td>3.25</td><td>3.25</td></tr>
+ <tr><td>COLREGS - COLLISION REGULATIONS</td><td>4</td><td>MT2-7A</td><td>JAVIER MADEL</td><td>3.00</td><td>2.00</td><td>2.00</td></tr>
+ <tr><td>SEAM 2 - TRIM STABILITY AND STRESS</td><td>4</td><td>MT2-7A</td><td>GO, YANCY IAN BAUTISTA</td><td>3.25</td><td>2.00</td><td>2.25</td></tr>
+ <tr><td>NGECT8 - ETHICS</td><td>3</td><td>MT2-7A</td><td>MARY ANNE MERCADO</td><td>3.50</td><td>2.25</td><td>2.50</td></tr>
+ <tr><td>NAV1 - NAVIGATIONAL INSTRUMENTS WITH COMPASSES</td><td>4</td><td>MT2-7A</td><td>MONTALBO REY D</td><td>3.00</td><td>2.00</td><td>2.00</td></tr>
+ <tr><td>EGEC4 - MATHEMATICS IN THE MODERN WORLD</td><td>3</td><td>MT2-7A</td><td>NIRO JESRYL MAE</td><td>3.50</td><td>2.25</td><td>2.50</td></tr>
  </tbody>
  </table>';
  } else {
