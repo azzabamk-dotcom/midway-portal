@@ -26,12 +26,13 @@ body {
  padding: 2rem;
  border-radius: 8px;
  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
- width: 95%;
- max-width: 1100px;
+ width: 90%;
+ max-width: 1000px;
  text-align: center;
  }
 
-header {
+/* Header Styles */
+ header {
  display: flex;
  align-items: center;
  justify-content: center;
@@ -40,7 +41,7 @@ header {
  }
 
 header img {
- width: 80px;
+ width: 80px; /* Adjust size as needed */
  height: auto;
  }
 
@@ -50,7 +51,8 @@ header h1 {
  font-size: 1.5rem;
  }
 
-#login-section {
+/* Login Form */
+ #login-section {
  max-width: 400px;
  margin: 0 auto;
  }
@@ -60,7 +62,7 @@ header h1 {
  text-align: left;
  }
 
-input, select {
+input {
  width: 100%;
  padding: 10px;
  margin-top: 5px;
@@ -85,7 +87,8 @@ input, select {
  background-color: #e6b800;
  }
 
-#dashboard {
+/* Dashboard Styles */
+ #dashboard {
  display: none;
  }
 
@@ -95,7 +98,6 @@ input, select {
  border-radius: 8px;
  border-left: 5px solid var(--midway-yellow);
  margin-bottom: 20px;
- text-align: left;
  }
 
 .nav-menu {
@@ -120,57 +122,24 @@ input, select {
  color: var(--midway-yellow);
  }
 
-.content-section {
+/* Grades Table */
+ .grades-container {
  display: none;
  margin-top: 20px;
- text-align: left;
- padding: 20px;
- background: #fff;
- border: 1px solid #ddd;
- border-radius: 8px;
  overflow-x: auto;
- }
-
-.enrollment-details {
- margin-top: 15px;
- line-height: 1.8;
- }
-
-.setting-dropdown {
- margin-top: 15px;
- background: #eee;
- padding: 10px;
- border-radius: 4px;
- cursor: pointer;
- font-weight: bold;
- border: 1px solid #ccc;
- }
-
-.term-status {
- display: none;
- padding-left: 20px;
- margin-top: 10px;
- border-left: 2px solid var(--midway-yellow);
- }
-
-.status-tag {
- color: green;
- font-weight: bold;
- margin-left: 10px;
  }
 
 table {
  width: 100%;
  border-collapse: collapse;
  margin-top: 15px;
- font-size: 0.85rem;
+ font-size: 0.9rem;
  }
 
 th {
  background-color: var(--midway-dark);
  color: white;
  padding: 12px;
- text-align: left;
  }
 
 td {
@@ -180,13 +149,20 @@ td {
  }
 
 tr:nth-child(even) { background-color: #f2f2f2; }
+
+.sy-select {
+ padding: 8px;
+ border-radius: 4px;
+ margin-bottom: 10px;
+ }
  </style>
 </head>
 <body>
 
 <div class="container">
  <header>
- <img src="logo.jpg" alt="Midway Logo"> 
+ <!-- The logo is added here -->
+ <img src="image_2.png"alt="Midway Logo">
  <h1>MIDWAY COLLEGES <br><small>(student backup portal)</small></h1>
  </header>
 
@@ -204,53 +180,26 @@ tr:nth-child(even) { background-color: #f2f2f2; }
 
 <div id="dashboard">
  <div class="welcome-banner">
- <h1 style="font-size: 1.5rem; margin: 0;" >Welcome back, John Kennete Delito Mabazza</h1>
+ <h1 style="font-size: 2rem;" >Welcome back, John Kennete Delito Mabazza</h1>
  <p><strong>Student ID:</strong> 2400156 | <strong>Course:</strong> Bachelor of Science in Marine Transportation</p>
  </div>
 
 <div class="nav-menu">
- <button onclick="showSection('grades-section')">GRADES</button>
- <button onclick="showSection('enrollment-section')">ENROLLMENT</button>
+ <button onclick="toggleGrades()">GRADES</button>
+ <button>ENROLLMENT</button>
  <button>EVALUATION</button>
  <button>CREDENTIALS</button>
  </div>
 
-<div id="grades-section" class="content-section">
+<div id="grades-section" class="grades-container">
  <label>Select School Year:</label>
- <select id="sySelector" onchange="showGradesTable()" style="width: auto; display: inline-block;" >
+ <select class="sy-select" id="sySelector" onchange="showGradesTable()">
  <option value="">-- Choose Year --</option>
  <option value="2526">SY 2025-2026</option>
  <option value="2425">SY 2024-2025</option>
  </select>
- <div id="grades-table-wrapper"></div>
- </div>
 
-<div id="enrollment-section" class="content-section">
- <label>Select School Year:</label>
- <select id="enrollSySelector" onchange="showEnrollmentDetails()" style="width: auto; display: inline-block;" >
- <option value="">-- Choose Year --</option>
- <option value="2425">SY 2024-2025</option>
- </select>
-
-<div id="enrollment-data" style="display:none;" class="enrollment-details">
- <hr>
- <p><strong>FULL NAME:</strong> JOHN DELITO MABAZZA</p>
- <p><strong>ADDRESS:</strong> PUROK 3, TABUENG, NUEVA VIZCAYA</p>
- <p><strong>CURRICULUM:</strong> 2023</p>
- 
-<div class="setting-dropdown" onclick="toggleSetting()"> ⚙️ SETTING (Click to expand terms)
- </div>
- 
-<div id="setting-content" class="term-status">
- <p>FIRST TERM 2026-2027 <span class="status-tag">ENROLLED</span></p>
- <p>SECOND TERM 2025-2026 <span class="status-tag">ENROLLED</span></p>
- <p>THIRD TERM 2025-2026 <span class="status-tag">ENROLLED</span></p>
- </div>
-
-<p style="margin-top:20px;" ><strong>DATE ENROLLED:</strong> 2024-06-24 09:04:35</p>
- <p><strong>STUDENT NO:</strong> 2400156</p>
- <p><strong>YEAR LEVEL:</strong> FIRST YEAR</p>
- </div>
+<div id="grades-table-wrapper"></div>
  </div>
  </div>
 </div>
@@ -259,8 +208,8 @@ tr:nth-child(even) { background-color: #f2f2f2; }
  function handleLogin() {
  const sNum = document.getElementById('studentNum').value;
  const pass = document.getElementById('password').value;
- 
-Updated logic to match your request
+
+In a real application, never hardcode credentials like this!
  if(sNum === "2400156" && pass === "2400156") {
  document.getElementById('login-section').style.display = 'none';
  document.getElementById('dashboard').style.display = 'block';
@@ -269,11 +218,9 @@ Updated logic to match your request
  }
  }
 
-function showSection(sectionId) {
- document.querySelectorAll('.content-section').forEach(section => {
- section.style.display = 'none';
- });
- document.getElementById(sectionId).style.display = 'block';
+function toggleGrades() {
+ const sec = document.getElementById('grades-section');
+ sec.style.display = (sec.style.display === 'block') ? 'none' : 'block';
  }
 
 function showGradesTable() {
@@ -295,28 +242,68 @@ if(year === "2526") {
  </tr>
  </thead>
  <tbody>
- <tr><td>NSTP2 - NATIONAL SERVICE TRAINING PROGRAM</td><td>3</td><td>MT2-7A</td><td>NROTC, NSTP</td><td>3.00</td><td>3.25</td><td>3.25</td></tr>
- <tr><td>COLREGS - COLLISION REGULATIONS</td><td>4</td><td>MT2-7A</td><td>JAVIER MADEL</td><td>3.00</td><td>2.00</td><td>2.00</td></tr>
- <tr><td>SEAM 2 - TRIM STABILITY AND STRESS</td><td>4</td><td>MT2-7A</td><td>GO, YANCY IAN BAUTISTA</td><td>3.25</td><td>2.00</td><td>2.25</td></tr>
- <tr><td>NGECT8 - ETHICS</td><td>3</td><td>MT2-7A</td><td>MARY ANNE MERCADO</td><td>3.50</td><td>2.25</td><td>2.50</td></tr>
- <tr><td>NAV1 - NAVIGATIONAL INSTRUMENTS WITH COMPASSES</td><td>4</td><td>MT2-7A</td><td>MONTALBO REY D</td><td>3.00</td><td>2.00</td><td>2.00</td></tr>
- <tr><td>EGEC4 - MATHEMATICS IN THE MODERN WORLD</td><td>3</td><td>MT2-7A</td><td>NIRO JESRYL MAE</td><td>3.50</td><td>2.25</td><td>2.50</td></tr>
+ <tr>
+ <td>NSTP2- NATIONAL SERVICE TRAINING PROGRAM (NAVAL ROTC)</TD>
+ <td>3</td>
+ <td>MT2-7A</td>
+ <td>NROTC</td>
+ <td>3.00</td>
+ <td>3.25</td>
+ <td>3.25</td>
+ </tr>
+ <tr>
+ <td>COLREGS-COLLISION REGULATIONS</td>
+ <td>4</td>
+ <td>MT2-7A</td>
+ <td>JAVIER MADEL</td>
+ <td>3.00</td>
+ <td>2.00</td>
+ <td>2.00</td>
+ </tr>
+ <tr>
+ <td>SEAM2-TRIM STABILITY AND STRESS</TD>
+ <td>4</td>
+ <td>MT2-7A</td>
+ <td>GO YANCY IAN BAUTISTA</td>
+ <td>3.25</td>
+ <td>2.00</td>
+ <td>2.25</td>
+ </tr>
+ <tr>
+ <td>EGEC8-ETHICS</td>
+ <td>3</td>
+ <td>MT2-7A</td>
+ <td>MERCADO MARY ANN</td>
+ <td>3.50</td>
+ <td>2.25</td>
+ <td>2.50</td>
+ </tr>
+ <tr>
+ <td>NAV1-NAVIGATIONAL INSTRUMENTS WITH COMPASSES</TD>
+ <td>4</td>
+ <td>MT2-7A</td>
+ <td>MONTALBO REY D</td>
+ <td>3.00</td>
+ <td>2.00</td>
+ <td>2.00</td>
+ </tr>
+ <tr>
+ <td>ENGEC4- MATHEMATICS IN THE MODERN WORLD</td>
+ <td>3</td>
+ <td>MT2-7A</td>
+ <td>NIRO JESRYL MAE</td>
+ <td>3.50</td>
+ <td>2.25</td>
+ <td>2.50</td>
+ </tr>
  </tbody>
- </table>';
+ </table>
+ `;
+ } else if(year === "2425") {
+ wrapper.innerHTML = "<p style='padding:20px;' >Records found for previous year. Loading data... </p>";
  } else {
- wrapper.innerHTML = year ? "<p>loading records... </p>": "";
+ wrapper.innerHTML = "";
  }
- }
-
-function showEnrollmentDetails() {
- const year = document.getElementById('enrollSySelector').value;
- const dataDiv = document.getElementById('enrollment-data');
- dataDiv.style.display = (year === "2425") ? "block": "none";
- }
-
-function toggleSetting() {
- const content = document.getElementById('setting-content');
- content.style.display = (content.style.display === 'block') ? 'none' : 'block';
  }
 </script>
 
