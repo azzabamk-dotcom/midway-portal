@@ -26,8 +26,8 @@ body {
  padding: 2rem;
  border-radius: 8px;
  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
- width: 90%;
- max-width: 1000px;
+ width: 95%;
+ max-width: 1100px;
  text-align: center;
  }
 
@@ -120,8 +120,7 @@ input, select {
  color: var(--midway-yellow);
  }
 
-/* Content Sections */
- .content-section {
+.content-section {
  display: none;
  margin-top: 20px;
  text-align: left;
@@ -129,6 +128,7 @@ input, select {
  background: #fff;
  border: 1px solid #ddd;
  border-radius: 8px;
+ overflow-x: auto;
  }
 
 .enrollment-details {
@@ -163,13 +163,14 @@ table {
  width: 100%;
  border-collapse: collapse;
  margin-top: 15px;
- font-size: 0.9rem;
+ font-size: 0.85rem;
  }
 
 th {
  background-color: var(--midway-dark);
  color: white;
  padding: 12px;
+ text-align: left;
  }
 
 td {
@@ -260,8 +261,6 @@ tr:nth-child(even) { background-color: #f2f2f2; }
  function handleLogin() {
  const sNum = document.getElementById('studentNum').value;
  const pass = document.getElementById('password').value;
-
-// Login using the credentials provided
  if(sNum === "2400156" && pass === "2400156") {
  document.getElementById('login-section').style.display = 'none';
  document.getElementById('dashboard').style.display = 'block';
@@ -271,11 +270,9 @@ tr:nth-child(even) { background-color: #f2f2f2; }
  }
 
 function showSection(sectionId) {
- // Hide all sections first
  document.querySelectorAll('.content-section').forEach(section => {
  section.style.display = 'none';
  });
- // Show the selected one
  document.getElementById(sectionId).style.display = 'block';
  }
 
@@ -284,32 +281,85 @@ function showGradesTable() {
  const wrapper = document.getElementById('grades-table-wrapper');
 
 if(year === "2526") {
- wrapper.innerHTML = `
+ wrapper.innerHTML = '
  <table>
  <thead>
  <tr>
  <th>Subject</th>
  <th>Units</th>
+ <th>Section</th>
+ <th>Instructor</th>
  <th>Midterm</th>
  <th>Finals</th>
  <th>Final Grade</th>
  </tr>
  </thead>
  <tbody>
- <tr><td>NSTP2 - NAVAL ROTC</td><td>3</td><td>3.00</td><td>3.25</td><td>3.25</td></tr>
- <tr><td>COLREGS</td><td>4</td><td>3.00</td><td>2.00</td><td>2.00</td></tr>
- <tr><td>SEAM2 - STABILITY</td><td>4</td><td>3.25</td><td>2.00</td><td>2.25</td></tr>
+ <tr>
+ <td>NSTP2 - NATIONAL SERVICE TRAINING PROGRAM</td>
+ <td>3</td>
+ <td>MT2-7A</td>
+ <td>NROTC, NSTP</td>
+ <td>3.00</td>
+ <td>3.25</td>
+ <td>3.25</td>
+ </tr>
+ <tr>
+ <td>COLREGS - COLLISION REGULATIONS</td>
+ <td>4</td>
+ <td>MT2-7A</td>
+ <td>JAVIER MADEL</td>
+ <td>3.00</td>
+ <td>2.00</td>
+ <td>2.00</td>
+ </tr>
+ <tr>
+ <td>SEAM 2 - TRIM STABILITY AND STRESS</td>
+ <td>4</td>
+ <td>MT2-7A</td>
+ <TD>GO, YANCY IAN BAUTISTA</TD>
+ <td>3.25</td>
+ <td>2.00</td>
+ <td>2.25</td>
+ </tr>
+ <tr>
+ <td>NGECT8 - ETHICS</td>
+ <td>3</td>
+ <td>MT2-7A</td>
+ <td>MARY ANNE MERCADO</td>
+ <td>3.50</td>
+ <td>2.25</td>
+ <td>2.50</td>
+ </tr>
+ <tr>
+ <td>NAV1 - NAVIGATIONAL INSTRUMENTS WITH COMPASSES</td>
+ <td>4</td>
+ <td>MT2-7A</td>
+ <td>MONTALBO REY D</td>
+ <td>3.00</td>
+ <td>2.00</td>
+ <td>2.00</td>
+ </tr>
+ <tr>
+ <td>EGEC4 - MATHEMATICS IN THE MODERN WORLD</td>
+ <td>3</td>
+ <td>MT2-7A</td>
+ <td>NIRO JESRYL MAE</td>
+ <td>3.50</td>
+ <td>2.25</td>
+ <td>2.50</td>
+ </tr>
  </tbody>
- </table>`;
+ </table>';
  } else {
- wrapper.innerHTML = year ? "<p>Loading records... </p>" : "";
+ wrapper.innerHTML = year ? "<p>loading records... </p>": "";
  }
  }
 
 function showEnrollmentDetails() {
  const year = document.getElementById('enrollSySelector').value;
  const dataDiv = document.getElementById('enrollment-data');
- dataDiv.style.display = (year === "2425") ? "block" : "none";
+ dataDiv.style.display = (year === "2425") ? "block": "none";
  }
 
 function toggleSetting() {
@@ -320,4 +370,3 @@ function toggleSetting() {
 
 </body>
 </html>
-
