@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDWAY COLLEGES - Student Portal</title>
+    <style>
+        :root {
+            --midway-yellow: #ffcc00;
+            --midway-gray: #e0e0e0;
+            --midway-dark: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--midway-gray);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        header img {
+            width: 80px;
+            height: auto;
+        }
+
+        header h1 {
+            color: black;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Login Form */
+        #login-section {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        #login-btn {
+            background-color: var(--midway-yellow);
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        #login-btn:hover {
+            background-color: #e6b800;
+        }
+
+        /* Dashboard Styles */
+        #dashboard {
+            display: none;
+        }
+
+        .welcome-banner {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--midway-yellow);
+            margin-bottom: 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: space-around;
+            background: var(--midway-dark);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .nav-menu button {
+            background: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .nav-menu button:hover {
+            color: var(--midway-yellow);
+        }
+
+        /* Grades Table */
+        .grades-container {
+            display: none;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--midway-dark);
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        .sy-select {
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="logo.jpg" alt="Midway Logo"> <h1>MIDWAY COLLEGES <br><small>(student backup portal)</small></h1>
+    </header>
+
+    <div id="login-section">
+        <div class="input-group">
+            <label>Student Number:</label>
+            <input type="text" id="studentNum" placeholder="2400156">
+        </div>
+        <div class="input-group">
+            <label>Password:</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+        <button id="login-btn" onclick="handleLogin()">LOGIN</button>
+    </div>
+
+    <div id="dashboard">
+        <div class="welcome-banner">
+            <h1 style="font-size: 2rem;">Welcome back, John Kennete Delito Mabazza</h1>
+            <p><strong>Student ID:</strong> 2400156 | <strong>Course:</strong> Bachelor of Science in Marine Transportation</p>
+        </div>
+
+        <div class="nav-menu">
+            <button onclick="toggleGrades()">GRADES</button>
+            <button>ENROLLMENT</button>
+            <button>EVALUATION</button>
+            <button>CREDENTIALS</button>
+        </div>
+
+        <div id="grades-section" class="grades-container">
+            <label>Select School Year:</label>
+            <select class="sy-select" id="sySelector" onchange="showGradesTable()">
+                <option value="">-- Choose Year --</option>
+                <option value="2526">SY 2025-2026</option>
+                <option value="2425">SY 2024-2025</option>
+            </select>
+
+            <div id="grades-table-wrapper"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleLogin() {
+        const sNum = document.getElementById('studentNum').value;
+        const pass = document.getElementById('password').value;
+
+        if(sNum === "2400156" && pass === "2400156") {
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+        } else {
+            alert("Invalid Student Number or Password");
+        }
+    }
+
+    function toggleGrades() {
+        const sec = document.getElementById('grades-section');
+        sec.style.display = (sec.style.display === 'block') ? 'none' : 'block';
+    }
+
+    function showGradesTable() {
+        const year = document.getElementById('sySelector').value;
+        const wrapper = document.getElementById('grades-table-wrapper');
+
+        if(year === "2526") {
+            wrapper.innerHTML = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Units</th>
+                            <th>Section</th>
+                            <th>Instructor</th>
+                            <th>Midterm</th>
+                            <th>Finals</th>
+                            <th>Final Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NSTP2- NATIONAL SERVICE TRAINING PROGRAM (NAVAL ROTC)</td>
+                            <td>3</td>
+                            <td>MT2-7A</td>
+                            <td>NROTC</td>
+                            <td>3.00</td>
+                            <td>3.25</td>
+                            <td>3.25</td>
+                        </tr>
+                        <tr>
+                            <td>COLREGS-COLLISION REGULATIONS</td>
+                            <td>4</td>
+                            <td>MT2-7A</td>
+                            <td>JAVIER MADEL</td>
+                            <td>3.00</td>
+                            <td>2.00</td>
+                            <td>2.00</td>
+                        </tr>
+                        <tr>
+                            <td>SEAM2-TRIM STABILITY AND STRESS</td>
+                            <td>4</td>
+                            <td>MT2-7A</td>
+                            <td>GO YANCY IAN BAUTISTA</td>
+                            <td>3.25</td>
+                            <td>2.00</td>
+                            <td>2.25</td>
+                        </tr>
+                        <tr>
+                            <td>EGEC8-ETHICS</td>
+                            <td>3</td>
+                            <td>MT2-7A</td>
+                            <td>MERCADO MARY ANN</td>
+                            <td>3.50</td>
+                            <td>2.25</td>
+                            <td>2.50</td>
+                        </tr>
+                        <tr>
+                            <td>NAV1-NAVIGATIONAL INSTRUMENTS WITH COMPASSES</td>
+                            <td>4</td>
+                            <td>MT2-7A</td>
+                            <td>MONTALBO REY D</td>
+                            <td>3.00</td>
+                            <td>2.00</td>
+                            <td>2.00</td>
+                        </tr>
+                        <tr>
+                            <td>ENGEC4- MATHEMATICS IN THE MODERN WORLD</td>
+                            <td>3</td>
+                            <td>MT2-7A</td>
+                            <td>NIRO JESRYL MAE</td>
+                            <td>3.50</td>
+                            <td>2.25</td>
+                            <td>2.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+        } else if(year === "2425") {
+            wrapper.innerHTML = "<p style='padding:20px;'>Records found for previous year. Loading data...</p>";
+        } else {
+            wrapper.innerHTML = "";
+        }
+    }
+</script>
+
+</body>
+</html>
